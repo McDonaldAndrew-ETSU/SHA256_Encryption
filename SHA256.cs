@@ -19,20 +19,20 @@ internal class SHA256
     public string Output { get; private set; }
     public char[][] MessageBlock { get; private set; } = new char[16][];
     public char[][] MessageSchedule { get; private set; } = new char[64][];
-    
+
     private static uint[] H = new uint[] {
-    Convert.ToUInt32("6a09e667", 16), Convert.ToUInt32("bb67ae85", 16), Convert.ToUInt32("3c6ef372", 16), Convert.ToUInt32("a54ff53a", 16),
-    Convert.ToUInt32("510e527f", 16), Convert.ToUInt32("9b05688c", 16), Convert.ToUInt32("1f83d9ab", 16), Convert.ToUInt32("5be0cd19", 16)
+      Convert.ToUInt32("6a09e667", 16), Convert.ToUInt32("bb67ae85", 16), Convert.ToUInt32("3c6ef372", 16), Convert.ToUInt32("a54ff53a", 16),
+      Convert.ToUInt32("510e527f", 16), Convert.ToUInt32("9b05688c", 16), Convert.ToUInt32("1f83d9ab", 16), Convert.ToUInt32("5be0cd19", 16)
     };
     private static uint[] K = new uint[] {
-    Convert.ToUInt32("428a2f98", 16), Convert.ToUInt32("71374491", 16), Convert.ToUInt32("b5c0fbcf", 16), Convert.ToUInt32("e9b5dba5", 16), Convert.ToUInt32("3956c25b", 16), Convert.ToUInt32("59f111f1", 16), Convert.ToUInt32("923f82a4", 16), Convert.ToUInt32("ab1c5ed5", 16),
-    Convert.ToUInt32("d807aa98", 16), Convert.ToUInt32("12835b01", 16), Convert.ToUInt32("243185be", 16), Convert.ToUInt32("550c7dc3", 16), Convert.ToUInt32("72be5d74", 16), Convert.ToUInt32("80deb1fe", 16), Convert.ToUInt32("9bdc06a7", 16), Convert.ToUInt32("c19bf174", 16),
-    Convert.ToUInt32("e49b69c1", 16), Convert.ToUInt32("efbe4786", 16), Convert.ToUInt32("0fc19dc6", 16), Convert.ToUInt32("240ca1cc", 16), Convert.ToUInt32("2de92c6f", 16), Convert.ToUInt32("4a7484aa", 16), Convert.ToUInt32("5cb0a9dc", 16), Convert.ToUInt32("76f988da", 16),
-    Convert.ToUInt32("983e5152", 16), Convert.ToUInt32("a831c66d", 16), Convert.ToUInt32("b00327c8", 16), Convert.ToUInt32("bf597fc7", 16), Convert.ToUInt32("c6e00bf3", 16), Convert.ToUInt32("d5a79147", 16), Convert.ToUInt32("06ca6351", 16), Convert.ToUInt32("14292967", 16),
-    Convert.ToUInt32("27b70a85", 16), Convert.ToUInt32("2e1b2138", 16), Convert.ToUInt32("4d2c6dfc", 16), Convert.ToUInt32("53380d13", 16), Convert.ToUInt32("650a7354", 16), Convert.ToUInt32("766a0abb", 16), Convert.ToUInt32("81c2c92e", 16), Convert.ToUInt32("92722c85", 16),
-    Convert.ToUInt32("a2bfe8a1", 16), Convert.ToUInt32("a81a664b", 16), Convert.ToUInt32("c24b8b70", 16), Convert.ToUInt32("c76c51a3", 16), Convert.ToUInt32("d192e819", 16), Convert.ToUInt32("d6990624", 16), Convert.ToUInt32("f40e3585", 16), Convert.ToUInt32("106aa070", 16),
-    Convert.ToUInt32("19a4c116", 16), Convert.ToUInt32("1e376c08", 16), Convert.ToUInt32("2748774c", 16), Convert.ToUInt32("34b0bcb5", 16), Convert.ToUInt32("391c0cb3", 16), Convert.ToUInt32("4ed8aa4a", 16), Convert.ToUInt32("5b9cca4f", 16), Convert.ToUInt32("682e6ff3", 16),
-    Convert.ToUInt32("748f82ee", 16), Convert.ToUInt32("78a5636f", 16), Convert.ToUInt32("84c87814", 16), Convert.ToUInt32("8cc70208", 16), Convert.ToUInt32("90befffa", 16), Convert.ToUInt32("a4506ceb", 16), Convert.ToUInt32("bef9a3f7", 16), Convert.ToUInt32("c67178f2", 16)
+      Convert.ToUInt32("428a2f98", 16), Convert.ToUInt32("71374491", 16), Convert.ToUInt32("b5c0fbcf", 16), Convert.ToUInt32("e9b5dba5", 16), Convert.ToUInt32("3956c25b", 16), Convert.ToUInt32("59f111f1", 16), Convert.ToUInt32("923f82a4", 16), Convert.ToUInt32("ab1c5ed5", 16),
+      Convert.ToUInt32("d807aa98", 16), Convert.ToUInt32("12835b01", 16), Convert.ToUInt32("243185be", 16), Convert.ToUInt32("550c7dc3", 16), Convert.ToUInt32("72be5d74", 16), Convert.ToUInt32("80deb1fe", 16), Convert.ToUInt32("9bdc06a7", 16), Convert.ToUInt32("c19bf174", 16),
+      Convert.ToUInt32("e49b69c1", 16), Convert.ToUInt32("efbe4786", 16), Convert.ToUInt32("0fc19dc6", 16), Convert.ToUInt32("240ca1cc", 16), Convert.ToUInt32("2de92c6f", 16), Convert.ToUInt32("4a7484aa", 16), Convert.ToUInt32("5cb0a9dc", 16), Convert.ToUInt32("76f988da", 16),
+      Convert.ToUInt32("983e5152", 16), Convert.ToUInt32("a831c66d", 16), Convert.ToUInt32("b00327c8", 16), Convert.ToUInt32("bf597fc7", 16), Convert.ToUInt32("c6e00bf3", 16), Convert.ToUInt32("d5a79147", 16), Convert.ToUInt32("06ca6351", 16), Convert.ToUInt32("14292967", 16),
+      Convert.ToUInt32("27b70a85", 16), Convert.ToUInt32("2e1b2138", 16), Convert.ToUInt32("4d2c6dfc", 16), Convert.ToUInt32("53380d13", 16), Convert.ToUInt32("650a7354", 16), Convert.ToUInt32("766a0abb", 16), Convert.ToUInt32("81c2c92e", 16), Convert.ToUInt32("92722c85", 16),
+      Convert.ToUInt32("a2bfe8a1", 16), Convert.ToUInt32("a81a664b", 16), Convert.ToUInt32("c24b8b70", 16), Convert.ToUInt32("c76c51a3", 16), Convert.ToUInt32("d192e819", 16), Convert.ToUInt32("d6990624", 16), Convert.ToUInt32("f40e3585", 16), Convert.ToUInt32("106aa070", 16),
+      Convert.ToUInt32("19a4c116", 16), Convert.ToUInt32("1e376c08", 16), Convert.ToUInt32("2748774c", 16), Convert.ToUInt32("34b0bcb5", 16), Convert.ToUInt32("391c0cb3", 16), Convert.ToUInt32("4ed8aa4a", 16), Convert.ToUInt32("5b9cca4f", 16), Convert.ToUInt32("682e6ff3", 16),
+      Convert.ToUInt32("748f82ee", 16), Convert.ToUInt32("78a5636f", 16), Convert.ToUInt32("84c87814", 16), Convert.ToUInt32("8cc70208", 16), Convert.ToUInt32("90befffa", 16), Convert.ToUInt32("a4506ceb", 16), Convert.ToUInt32("bef9a3f7", 16), Convert.ToUInt32("c67178f2", 16)
     };
     private static uint a = H[0];
     private static uint b = H[1];
@@ -87,7 +87,7 @@ internal class SHA256
         int originalMessageLength = binaryInput.Length;
         binaryInput += "1";
 
-        // 2. Prepend binaryInput to and append 0's until there are 448 bits. 
+        // 2. Prepend binaryInput to and append 0's until there are 448 bits.
         for (int i = binaryInput.Length; i < 448; i++)
         {
             binaryInput += "0";
@@ -117,7 +117,7 @@ internal class SHA256
     /// <returns> a binary string representation of the input message </returns>
     private string StringToBinary(string str)
     {
-        string s = String.Empty;
+        string s = string.Empty;
         foreach (char c in str)
         {
             s += Convert.ToString((int)c, 2).PadLeft(8, '0');
@@ -136,8 +136,8 @@ internal class SHA256
     }
 
     /// <summary>
-    /// This method is used to create a MessageSchedule where many bitwise operations will occur using 
-    /// the SHA256 constants and the finished message block. 
+    /// This method is used to create a MessageSchedule where many bitwise operations will occur using
+    /// the SHA256 constants and the finished message block.
     /// </summary>
     /// <param name="messageBlock"> the finished message block </param>
     /// <returns> a jagged array representing the message schedule </returns>
@@ -161,14 +161,14 @@ internal class SHA256
             {
                 // 6. Calculate σ0 = (w1 rightrotate 7) xor (w1 rightrotate 18) xor (w1 rightshift 3)
                 uint num0 = Convert.ToUInt32(new string(MessageSchedule[i + 1]), 2);
-                long theta0 = BitOperations.RotateRight(num0, 7) ^ BitOperations.RotateRight(num0, 18) ^ num0 >> 3;
+                long lowerSigma0 = BitOperations.RotateRight(num0, 7) ^ BitOperations.RotateRight(num0, 18) ^ num0 >> 3;
 
                 // 7. Calculate σ1 = (w14 rightrotate 17) xor (w14 rightrotate 19) xor (w14 rightshift 10)
                 uint num1 = Convert.ToUInt32(new string(MessageSchedule[i + 14]), 2);
-                long theta1 = BitOperations.RotateRight(num1, 17) ^ BitOperations.RotateRight(num1, 19) ^ num1 >> 10;
+                long lowerSigma1 = BitOperations.RotateRight(num1, 17) ^ BitOperations.RotateRight(num1, 19) ^ num1 >> 10;
 
                 // 8. Calculate w16 = w0 + σ0 + w9 + σ1
-                uint w = (uint)(Convert.ToUInt32(new string(MessageSchedule[i]), 2) + theta0 + Convert.ToUInt32(new string(MessageSchedule[i + 9]), 2) + theta1);
+                uint w = (uint)(Convert.ToUInt32(new string(MessageSchedule[i]), 2) + lowerSigma0 + Convert.ToUInt32(new string(MessageSchedule[i + 9]), 2) + lowerSigma1);
 
                 MessageSchedule[i + 16] = Convert.ToString(w, 2).PadLeft(32, '0').ToCharArray();
             }
@@ -186,13 +186,13 @@ internal class SHA256
     {
         for (int i = 0; i < MessageSchedule.Length; i++)
         {
-            long sum1 = BitOperations.RotateRight(e, 6) ^ BitOperations.RotateRight(e, 11) ^ BitOperations.RotateRight(e, 25);
+            long upperSigma1 = BitOperations.RotateRight(e, 6) ^ BitOperations.RotateRight(e, 11) ^ BitOperations.RotateRight(e, 25);
             long choice = (e & f) ^ ((~e) & g);
-            long sum0 = BitOperations.RotateRight(a, 2) ^ BitOperations.RotateRight(a, 13) ^ BitOperations.RotateRight(a, 22);
+            long upperSigma0 = BitOperations.RotateRight(a, 2) ^ BitOperations.RotateRight(a, 13) ^ BitOperations.RotateRight(a, 22);
             long majority = (a & b) ^ (a & c) ^ (b & c);
             long word = Convert.ToUInt32(new string(MessageSchedule[i]).PadLeft(32, '0'), 2);
 
-            long temp1 = h + sum1 + choice + K[i] + word;
+            long temp1 = h + upperSigma1 + choice + K[i] + word;
             string tmp1 = Convert.ToString(temp1, 2);
             if (tmp1.Length > 32)
             {
@@ -207,7 +207,7 @@ internal class SHA256
                 temp1 = Convert.ToUInt32(new string(newString).PadLeft(32, '0'), 2);
             }
 
-            long temp2 = sum0 + majority;
+            long temp2 = upperSigma0 + majority;
             string tmp2 = Convert.ToString(temp2, 2);
             if (tmp2.Length > 32)
             {
@@ -222,7 +222,7 @@ internal class SHA256
                 temp2 = Convert.ToUInt32(new string(newString).PadLeft(32, '0'), 2);
             }
 
-            // 9. Update working variables
+            // 9. Update working variables every iteration
             h = g;
             g = f;
             f = e;

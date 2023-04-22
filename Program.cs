@@ -16,7 +16,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        SHA256 hash = new("Andrew123");
+        SHA256 hash = new("And");
 
         Console.WriteLine(hash.Output);
     }
