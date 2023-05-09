@@ -105,7 +105,7 @@ internal class BruteForceAttacks
                 Console.SetCursorPosition(57, 12);
                 Console.Write($"Password CRACKED!                            ");
                 Console.SetCursorPosition(57, 13);
-                Console.Write($"-->{ Password}< --Enter anything to continue.");
+                Console.Write($"-->{Password}< --Enter anything to continue.");
 
 
                 if (!(CrackedPasswords.ContainsKey(hashToCrack)))

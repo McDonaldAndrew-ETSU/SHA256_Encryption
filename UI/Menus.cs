@@ -82,7 +82,7 @@ internal static class Menus
     public static string DecryptCrackedMenu()
     {
         return
-            $"└──────────────────────────────────────────────┴─                     ─┴─────────── USING CRACLED ENTRIES ───────────┤\n" +
+            $"└──────────────────────────────────────────────┴─                     ─┴─────────── USING CRACKED ENTRIES ───────────┤\n" +
             $"                                                                              Paste and Enter a SHA256 Hash here─────┤\n" +
             $"                                                                                                               ⌡     │\n" +
             $"                                                  ┌──                                                                │\n" +
@@ -97,8 +97,8 @@ internal static class Menus
     {
         return
             $"└──────────────────────────────────────────────┴─                     ─┴──────────── USING RAINBOW TABLE ────────────┤\n" +
-            $"                                                                              Paste and Enter a SHA256 Hash here─────┤\n" +
-            $"                                                                                                               ⌡     │\n" +
+            $"                                                     Paste and Enter a SHA256 Hash below                             │\n" +
+            $"                                                                                                                     │\n" +
             $"                                                  ┌──                                                                │\n" +
             $"                                                  └──────────────────────────────────────────────────────────────────┘";
     }
@@ -111,8 +111,8 @@ internal static class Menus
     {
         return
             $"└──────────────────────────────────────────────┘                       └───────────── BRUTE FORCE ATTACK ────────────┤\n" +
-            $"                                                                              Paste and Enter a SHA256 Hash here─────┤\n" +
-            $"                                                                                                               ⌡     │\n" +
+            $"                                                     Paste and Enter a SHA256 Hash below                             │\n" +
+            $"                                                                                                                     │\n" +
             $"                                                  ┌──                                                                │\n" +
             $"                                                  └──────────────────────────────────────────────────────────────────┘";
     }
@@ -153,7 +153,7 @@ internal static class Menus
             $"│ The RainbowTable options cannot start until the objects have fully loaded. A notification will come when all objects\n" +
             $"│ are loaded into the program. For the BruteForce option, the program will continue until the hash is cracked.        \n" +
             $"│                                                                                                                     \n" +
-            $"│ 'Have fun and try not to do anything illegal!'                                                                      \n" +
+            $"│ 'Have fun and do not do anything illegal!'                                                                          \n" +
             $"│                                                                                                                     \n" +
             $"│                   -Å∩DRΣW MCDσπαLD HACKING TΩΩLS                                                                    \n" +
             $"│                                                                                                                     \n" +
